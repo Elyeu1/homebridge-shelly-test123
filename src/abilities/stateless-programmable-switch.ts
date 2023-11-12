@@ -1,4 +1,4 @@
-import { Input } from 'shellies-ng';
+import { Input } from 'homebridge-elyeu-shelly-node-gui';
 
 import { Ability, ServiceClass } from './base';
 

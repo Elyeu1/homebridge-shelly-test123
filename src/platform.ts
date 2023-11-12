@@ -13,7 +13,7 @@ import {
   DeviceIdentifiers,
   MdnsDeviceDiscoverer,
   Shellies,
-} from 'shellies-ng';
+} from 'homebridge-elyeu-shelly-node-gui';
 
 import { CustomCharacteristics, createCharacteristics } from './utils/characteristics';
 import { CustomServices, createServices } from './utils/services';
@@ -131,7 +131,7 @@ export class ShellyPlatform implements DynamicPlatformPlugin {
   readonly customServices: CustomServices;
 
   /**
-   * A reference to the shellies-ng library.
+   * A reference to the homebridge-elyeu-shelly-node-gui library.
    */
   protected readonly shellies: Shellies;
 
@@ -168,7 +168,7 @@ export class ShellyPlatform implements DynamicPlatformPlugin {
     this.customCharacteristics = Object.freeze(createCharacteristics(api));
     this.customServices = Object.freeze(createServices(api, this.customCharacteristics));
 
-    // setup shellies-ng
+    // setup homebridge-elyeu-shelly-node-gui
     this.shellies = new Shellies({
       websocket: { ...this.options.websocket, clientId: 'homebridge-shelly-ng-' + Math.round(Math.random() * 1000000) },
       autoLoadStatus: true,
@@ -335,7 +335,7 @@ export class ShellyPlatform implements DynamicPlatformPlugin {
   }
 
   /**
-   * Handles 'add' events from the shellies-ng library.
+   * Handles 'add' events from the homebridge-elyeu-shelly-node-gui library.
    */
   protected async handleAddedDevice(device: Device) {
     // make sure this device hasn't already been added
@@ -372,7 +372,7 @@ export class ShellyPlatform implements DynamicPlatformPlugin {
   }
 
   /**
-   * Handles 'remove' events from the shellies-ng library.
+   * Handles 'remove' events from the homebridge-elyeu-shelly-node-gui library.
    */
   protected handleRemovedDevice(device: Device) {
     // destroy and remove the device delegate
@@ -384,7 +384,7 @@ export class ShellyPlatform implements DynamicPlatformPlugin {
   }
 
   /**
-   * Handles 'exclude' events from the shellies-ng library.
+   * Handles 'exclude' events from the homebridge-elyeu-shelly-node-gui library.
    */
   protected handleExcludedDevice(deviceId: DeviceId) {
     this.log.info(`[${deviceId}] Device excluded`);
@@ -420,14 +420,14 @@ export class ShellyPlatform implements DynamicPlatformPlugin {
   }
 
   /**
-   * Handles 'unknown' events from the shellies-ng library.
+   * Handles 'unknown' events from the homebridge-elyeu-shelly-node-gui library.
    */
   protected handleUnknownDevice(deviceId: DeviceId, model: string) {
     this.log.info(`[${deviceId}] Unknown device of model "${model}" discovered.`);
   }
 
   /**
-   * Handles 'error' events from the shellies-ng library.
+   * Handles 'error' events from the homebridge-elyeu-shelly-node-gui library.
    */
   protected handleError(deviceId: DeviceId, error: Error) {
     // print the error to the log

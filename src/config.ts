@@ -1,6 +1,6 @@
 import { PlatformConfig } from 'homebridge';
 
-import { DeviceId } from 'shellies-ng';
+import { DeviceId } from 'homebridge-elyeu-shelly-node-gui';
 
 export interface MdnsOptions {
   /**
